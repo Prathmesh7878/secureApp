@@ -7,12 +7,17 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
 public class configManually {
 
+    //csrf disable and new seesion each time ideal for reatapi and login default auth
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(Customizer -> Customizer.disable());
@@ -21,4 +26,22 @@ public class configManually {
         httpSecurity.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return httpSecurity.build();
     }
+    //creating users usingg intergace user and hardcodeed users in app.prooprties will not be included
+    @Bean
+    public UserDetailsService userDetailsService(){
+        UserDetails user1= User.withDefaultPasswordEncoder()
+                .username("prathmesh")
+                .password("root")
+                .roles("USER")
+                .build();
+
+        UserDetails admin= User.withDefaultPasswordEncoder()
+                .username("shinde")
+                .password("root")
+                .roles("ADMIN")
+                .build();
+        return new InMemoryUserDetailsManager(user1,admin);
+    }
+
+
 }
