@@ -1,4 +1,4 @@
-package com.example.secure.secureApp;
+package com.example.secure.secureApp.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

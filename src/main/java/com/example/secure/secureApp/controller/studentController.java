@@ -1,6 +1,6 @@
-package com.example.secure.secureApp;
+package com.example.secure.secureApp.controller;
 
-import jakarta.servlet.http.HttpServlet;
+import com.example.secure.secureApp.model.student;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
