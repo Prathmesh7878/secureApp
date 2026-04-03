@@ -1,6 +1,7 @@
 package com.example.secure.secureApp.service;
 
 import com.example.secure.secureApp.model.UserPrincipal;
+import com.example.secure.secureApp.model.user;
 import com.example.secure.secureApp.repo.userRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
@@ -17,7 +18,7 @@ public class myUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user=repo.getByUsername(username);
+        user user=repo.findByUsername(username);
         if (user==null){
             throw new UsernameNotFoundException("user not found");
         }

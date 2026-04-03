@@ -23,7 +23,7 @@ import org.springframework.security.web.SecurityFilterChain;
 public class configManually {
 
     @Autowired
-    public UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @Bean
     public AuthenticationProvider authenticationProvider(){
