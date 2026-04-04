@@ -36,43 +36,14 @@ public class configManually {
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     //csrf disable and new seesion each time ideal for reatapi and login default auth
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(Customizer -> Customizer.disable());
-        httpSecurity.authorizeHttpRequests(request -> request.anyRequest().authenticated());
+        httpSecurity.authorizeHttpRequests(request -> request
+                .requestMatchers("register")
+                .permitAll()
+                .anyRequest().authenticated());
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.sessionManagement(session->session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return httpSecurity.build();
